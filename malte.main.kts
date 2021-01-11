@@ -95,7 +95,9 @@ abstract class LoadBalancer(nProviders : Int) {
 
     // Given `nTasks` many incoming requests, returns an array of length
     // `nTasks`. Entry i (where i = 0 until nTasks) is the identifier of the
-    // Provider being assigned the ith incoming request.
+    // Provider being assigned the ith incoming request. This function may
+    // throw an exception if there are not sufficiently many Providers
+    // available.
     fun assign(nTasks : Int) : Array<String> {
         require (nTasks > 0)
         require (nTasks <= 3*nEnabled)
